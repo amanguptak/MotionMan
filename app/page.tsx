@@ -3,7 +3,13 @@ import Image from "next/image";
 import logo from "@/public/images/nobg.png";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { auth } from "@clerk/nextjs";
+
+import {redirect} from "next/navigation"
 export default function Home() {
+
+  const {userId} = auth()
+  if(userId){redirect("/motion")}
   return (
    <main className="flex  items-center justify-center h-screen lg:gap-4 flex-col bg-[#a2c4c9]">
     <div className="grid place-items-center p-4 gap-4 lg:max-w-3xl lg:grid-flow-col">

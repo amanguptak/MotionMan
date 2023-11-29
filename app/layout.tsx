@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 
-const inter = Inter({ subsets: ['latin'] })
+import { Ubuntu } from 'next/font/google';
+
+const ubuntu = Ubuntu({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-ubuntu',
+  weight: ['300', '400', '500', '700']
+});
 
 export const metadata: Metadata = {
   title: 'Motion App',
@@ -18,7 +25,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={ubuntu.className}>{children}</body>
     </html>
     </ClerkProvider>
   )

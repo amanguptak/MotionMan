@@ -1,8 +1,13 @@
 import React from 'react'
+import { auth } from '@clerk/nextjs'
+import prisma from '@/lib/db/prisma'
+const Motion = async () => {
+  const { userId } = auth();
 
-const Motion = () => {
+  if (!userId) throw Error("userId undefined");
+  const allMotions = await prisma.note.findMany({where :{userId: userId}})
   return (
-    <div>page</div>
+    <div>{JSON.stringify(allMotions)}</div>
   )
 }
 

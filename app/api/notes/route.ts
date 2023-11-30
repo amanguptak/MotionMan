@@ -5,6 +5,7 @@ import { addNoteSchema } from "@/lib/validation/note";
 export async function POST(req:Request){
     try{
         const body = await req.json()
+        console.log(body)
         const parseResult = addNoteSchema.safeParse(body)
         if(!parseResult.success){
             return Response.json({error:"Invalid note"},{status: 400})

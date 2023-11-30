@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Spinbutton from "./ui/spin-button";
+import axios from "axios";
 import {
   Dialog,
   DialogContent,
@@ -38,7 +39,14 @@ const NoteDialog = ({ open, setOpen }: NoteDialogProps) => {
   });
 
   const onSubmit = (values: AddNoteSchema) => {
-    alert(JSON.stringify(values));
+   axios.post("/api/notes",values).then((res)=>{
+    console.log(res);
+    form.reset();
+    router.refresh();
+    setOpen(false);
+   }).catch((err) => {
+    console.log("Something Went Wrong",err);
+   })
   };
   return (
     <>

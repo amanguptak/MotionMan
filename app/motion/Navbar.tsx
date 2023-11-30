@@ -1,12 +1,16 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/nobg.png";
+import NoteDialog from "@/components/NoteDialog";
 const Navbar = () => {
+  const [dialog  , setDialog] = useState(false)
   return (
+  <>
     <div className="shadow p-4  bg-[#a2c4c9]">
       <div className="flex flex-wrap gap-3 max-w-8xl m-auto items-center justify-between">
         <Link href="/" className="flex items-center gap-1">
@@ -20,13 +24,15 @@ const Navbar = () => {
               elements: { avatarBox: { width: "2.3rem", height: "2.3rem" } },
             }}
           />
-          <Button>
+          <Button onClick={() => setDialog(true)}>
             <Plus size={20} className="mr-2" />
             Add Note
           </Button>
         </div>
       </div>
     </div>
+    <NoteDialog open={dialog} setOpen={setDialog}/>
+  </>
   );
 };
 

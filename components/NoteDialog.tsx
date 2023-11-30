@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Spinbutton from "./ui/spin-button";
 import axios from "axios";
+// import { useToast } from "@/components/ui/use-toast"
+
+
 import {
   Dialog,
   DialogContent,
@@ -30,6 +33,7 @@ interface NoteDialogProps {
 
 const NoteDialog = ({ open, setOpen }: NoteDialogProps) => {
   const router = useRouter();
+//   const { toast } = useToast()
   const form = useForm<AddNoteSchema>({
     resolver: zodResolver(addNoteSchema),
     defaultValues: {
@@ -38,9 +42,11 @@ const NoteDialog = ({ open, setOpen }: NoteDialogProps) => {
     },
   });
 
+
   const onSubmit = (values: AddNoteSchema) => {
    axios.post("/api/notes",values).then((res)=>{
     console.log(res);
+
     form.reset();
     router.refresh();
     setOpen(false);

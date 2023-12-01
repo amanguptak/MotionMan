@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Spinbutton from "./ui/spin-button";
 import axios from "axios";
-// import { useToast } from "@/components/ui/use-toast"
+import { toast } from 'sonner';
 
 
 import {
@@ -49,7 +49,7 @@ const NoteDialog = ({ open, setOpen ,noteEdit}: NoteDialogProps) => {
     if(noteEdit) {
       axios.put("/api/notes",{...values , id:noteEdit.id}).then((res)=>{
         console.log(res);
-    
+        toast.info("note updated successfully")
        
         router.refresh();
         setOpen(false);
@@ -58,7 +58,7 @@ const NoteDialog = ({ open, setOpen ,noteEdit}: NoteDialogProps) => {
        })
     }else{
       axios.post("/api/notes",values).then((res)=>{
-        console.log(res);
+        toast.success("You added new motion 😀")
     
         form.reset();
         router.refresh();

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner';
 import axios from 'axios'
+import { Badge } from "@/components/ui/badge"
+
 import {
   Card,
   CardContent,
@@ -33,7 +35,7 @@ const NoteCard = ({note}:NoteProps) => {
           id: note.id,
         }    })
         .then((res)=>{
-          console.log(res);
+          
           toast.error(`${note?.title} is deleted`);
       
           router.refresh();
@@ -49,7 +51,8 @@ const NoteCard = ({note}:NoteProps) => {
         <CardTitle>{note.title}</CardTitle>
         <CardDescription>
           {createdUpdatedAtTimestamp}
-          {wasUpdated && " (updated)"}
+          {wasUpdated && <Badge>updated</Badge>
+}
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -21,7 +21,7 @@ const NoteCard = ({note}:NoteProps) => {
     ).toDateString();
     //for creating date in human readable format
   return (
-    <Card>
+    <Card className='h-fit'>
       <CardHeader>
         <CardTitle>{note.title}</CardTitle>
         <CardDescription>

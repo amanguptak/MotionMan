@@ -74,7 +74,7 @@ const NoteDialog = ({ open, setOpen ,noteEdit}: NoteDialogProps) => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Motion</DialogTitle>
+            <DialogTitle>{noteEdit?"Update Motion":"Add Motion"}</DialogTitle>
           </DialogHeader>
 
           <Form {...form}>

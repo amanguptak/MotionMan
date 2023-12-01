@@ -5,7 +5,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 
 import { Ubuntu } from 'next/font/google';
-
+import { Toaster } from 'sonner';
 const ubuntu = Ubuntu({
   subsets: ['latin'],
   display: 'swap',
@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={ubuntu.className}>
         <main>{children}</main>
-        {/* <Toaster /> */}
+        <Toaster position="top-center" richColors />
       </body>
     </html>
     </ClerkProvider>

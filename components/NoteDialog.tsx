@@ -25,34 +25,49 @@ import {
 import { Input } from "./ui/input";
 
 import { Textarea } from "./ui/textarea";
+import { Note } from "@prisma/client";
 
 interface NoteDialogProps {
   open: boolean;
   setOpen: (open: boolean) => void;
+  noteEdit ?: Note
 }
 
-const NoteDialog = ({ open, setOpen }: NoteDialogProps) => {
+const NoteDialog = ({ open, setOpen ,noteEdit}: NoteDialogProps) => {
   const router = useRouter();
 //   const { toast } = useToast()
   const form = useForm<AddNoteSchema>({
     resolver: zodResolver(addNoteSchema),
     defaultValues: {
-      title: "",
-      content: "",
+      title: noteEdit?.title || "",
+      content:noteEdit?.content || "",
     },
   });
 
 
   const onSubmit = (values: AddNoteSchema) => {
-   axios.post("/api/notes",values).then((res)=>{
-    console.log(res);
-
-    form.reset();
-    router.refresh();
-    setOpen(false);
-   }).catch((err) => {
-    console.log("Something Went Wrong",err);
-   })
+    if(noteEdit) {
+      axios.put("/api/notes",{...values , id:noteEdit.id}).then((res)=>{
+        console.log(res);
+    
+       
+        router.refresh();
+        setOpen(false);
+       }).catch((err) => {
+        console.log("Something Went Wrong",err);
+       })
+    }else{
+      axios.post("/api/notes",values).then((res)=>{
+        console.log(res);
+    
+        form.reset();
+        router.refresh();
+        setOpen(false);
+       }).catch((err) => {
+        console.log("Something Went Wrong",err);
+       })
+    }
+   
   };
   return (
     <>

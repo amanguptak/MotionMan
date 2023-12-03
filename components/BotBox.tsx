@@ -13,6 +13,8 @@ interface BotProps {
 onClose : ()=>void;
 }
 const BotBox = ({ open, onClose }: BotProps) => {
+
+    // useChat by default access routes /api/chat it is next js sdk fro ai
    const  {messages,input , handleInputChange,handleSubmit,setMessages, isLoading ,error }= useChat()
    const inputRef = useRef<HTMLInputElement>(null);
    const scrollRef = useRef<HTMLDivElement>(null);
@@ -64,7 +66,7 @@ const BotBox = ({ open, onClose }: BotProps) => {
           )}
           {!error && messages.length === 0 && (
             <div className="flex h-full items-center justify-center mx-8">
-              {/* <Bot /> */}
+         
               Unlock the power of Motion AI 🤖 to enhance your experience!
             </div>
           )}
@@ -116,7 +118,7 @@ function ChatMessage({
         <p
           className={cn(
             "whitespace-pre-line rounded-2xl border px-3 py-1",
-            isAiMessage ? "bg-background" : "bg-[#0072b1] text-primary-foreground",
+            isAiMessage ? "bg-background border-[#a2c4c9]" : "bg-[#0072b1] text-primary-foreground",
           )}
         >
           {content}

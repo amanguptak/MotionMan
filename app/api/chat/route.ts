@@ -9,21 +9,22 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const messages: ChatCompletionMessage[] = body.messages;
+    // console.log("Message ",messages)
 // Here i write -6 beause i only want bot to remember last 6 chat messages
     const messagesTruncated = messages.slice(-6);
-
+    // console.log("Message sliced",messagesTruncated)
     const embedding = await getEmbedding(
       messagesTruncated.map((message) => message.content).join("\n"),
     );
 
     const { userId } = auth();
-
+// filterig sepecific notes based on userId
     const vectorQueryResponse = await noteIndex.query({
       vector: embedding,
       topK: 4,
       filter: { userId },
     });
-
+console.log("Vector querry",vectorQueryResponse)
     const relevantNotes = await prisma.note.findMany({
       where: {
         id: {

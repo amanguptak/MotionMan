@@ -6,10 +6,10 @@ const BotButton = () => {
   const [chatBox, setChatBox] = useState(false);
   return (
     <>
-      <Button onClick={() => setChatBox(true)}>
+      <Button onClick={() => setChatBox(!chatBox)}>
         <BotIcon size={20} className="mr-2" />
         Motion AI
-        <BotBox open={chatBox} onClose={() => setChatBox(!chatBox)} />
+        <BotBox open={chatBox} onClose={()=>setChatBox(false)}/>
       </Button>
     </>
   );

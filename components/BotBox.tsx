@@ -83,7 +83,7 @@ const BotBox = ({ open, onClose }: BotProps) => {
           <Input
             value={input}
             onChange={handleInputChange}
-            placeholder="Say something..."
+            placeholder="Ask something..."
             ref={inputRef}
           />
           <Button type="submit">Ask</Button>

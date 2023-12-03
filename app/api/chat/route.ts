@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const messages: ChatCompletionMessage[] = body.messages;
-// here i write -6 beause i only want bot to remember last 6 chat messages
+// Here i write -6 beause i only want bot to remember last 6 chat messages
     const messagesTruncated = messages.slice(-6);
 
     const embedding = await getEmbedding(
@@ -34,6 +34,7 @@ export async function POST(req: Request) {
 
     console.log("Relevant notes found: ", relevantNotes);
 
+    // adding messages to open ai for starts with
     const systemMessage: ChatCompletionMessage = {
         role: "system",
       content:

@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/nobg.png";
 import NoteDialog from "@/components/NoteDialog";
+// import BotButton from "@/components/BotButton";
 const Navbar = () => {
   const [dialog  , setDialog] = useState(false)
   return (
@@ -28,6 +29,7 @@ const Navbar = () => {
             <Plus size={20} className="mr-2" />
             Add Note
           </Button>
+          {/* <BotButton/> */}
         </div>
       </div>
     </div>
